@@ -25,15 +25,9 @@ int main_func(){
 
     Particle mu(pdg, t, cos);
 
-    std::cout << " ===== Testing particle class ===== " << std::endl;
-    std::cout << " ================================== " << std::endl;
-    std::cout << " PDG          : " << mu.GetPDG() << std::endl;
-    std::cout << " True         : " << std::endl;
-    std::cout << "           KE : " << mu.GetT() << ", cos(theta) : " << mu.GetCos() << std::endl;
-    std::cout << " Smeared      : " << std::endl;
-    std::cout << "           KE : " << mu.GetTSmeared() << ", cos(theta) : " << mu.GetCosSmeared() << std::endl;
-    std::cout << " Reconstructed? " << mu.GetIfReconstructed() << std::endl;
-    std::cout << " ================================== " << std::endl;
+    std::cout << std::endl;
+    std::cout << "---- Testing particle class ----" << std::endl;
+    std::cout << mu << std::endl;
 
     return 0;
 

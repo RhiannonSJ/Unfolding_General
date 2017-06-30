@@ -78,6 +78,30 @@ namespace xsec{
     }
 
     // ====================================================================================
+    //                                    Operators
+    // ====================================================================================
+    std::ostream& operator<<( std::ostream& os, const Particle& P ){
+    
+        os << std::setprecision(3) << std::setw(4)
+           << "--------------------------------" << std::endl
+           << " PDG           : " << P.GetPDG() << std::endl
+           << "--------------------------------" << std::endl
+           << " True " << std::endl
+           << "            KE : " << P.GetT() << std::endl
+           << "    cos(theta) : " << P.GetCos() << std::endl
+           << "--------------------------------" << std::endl
+           << " Smeared " << std::endl
+           << "            KE : " << P.GetTSmeared() << std::endl
+           << "    cos(theta) : " << P.GetCosSmeared() << std::endl
+           << "--------------------------------" << std::endl
+           << " Reconstructed?  " << P.GetIfReconstructed() << std::endl
+           << "--------------------------------" << std::endl;
+           
+        return os;
+    
+    }
+    
+    // ====================================================================================
     //                              Functions definitions
     // ====================================================================================
     

@@ -64,6 +64,8 @@ namespace xsec{
             //  Reconstructed?
             bool GetIfReconstructed() const;
         
+            friend std::ostream& operator<<( std::ostream& , const Particle& );
+
         private:
 
             // Member variables
