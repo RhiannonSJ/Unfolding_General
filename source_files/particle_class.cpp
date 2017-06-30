@@ -80,6 +80,7 @@ namespace xsec{
     // ====================================================================================
     //                                    Operators
     // ====================================================================================
+    
     std::ostream& operator<<( std::ostream& os, const Particle& P ){
     
         os << std::setprecision(3) << std::setw(4)
@@ -102,7 +103,7 @@ namespace xsec{
     }
     
     // ====================================================================================
-    //                              Functions definitions
+    //                              Function definitions
     // ====================================================================================
     
     //  Check if the particle is reconstructed based on cuts and efficiency
