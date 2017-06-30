@@ -43,7 +43,10 @@ namespace xsec{
         this->Smear();
     }
 
-    // Getters
+    // ====================================================================================
+    //                                     Getters
+    // ====================================================================================
+    
     //  PDG
     int Particle::GetPDG() const{
         return m_PDG;
@@ -74,7 +77,10 @@ namespace xsec{
         return m_is_reconstructed;
     }
 
-    // Functions
+    // ====================================================================================
+    //                              Functions definitions
+    // ====================================================================================
+    
     //  Check if the particle is reconstructed based on cuts and efficiency
     bool Particle::CheckIfReconstructed(){
 
@@ -193,14 +199,10 @@ namespace xsec{
             return 0;
         }
         
-    }
+    } // Contained
 
     //  Smearing        
     double Particle::RangeSmear(){
-
-        ROOT::Math::GSLRngMT *_rand = new ROOT::Math::GSLRngMT;
-        _rand->Initialize();
-        _rand->SetSeed( time( NULL ) );
     
         //For contained muons use range based bias and resolution
         //Values from Fig 12 of https://arxiv.org.png/1703.06187.png
@@ -239,25 +241,25 @@ namespace xsec{
             }
         }
 
+        // Initialise random number generator
+        ROOT::Math::GSLRngMT *_rand = new ROOT::Math::GSLRngMT;
+        _rand->Initialize();
+        _rand->SetSeed( time( NULL ) );
+
         double e_smear = e + _rand->Gaussian( resolution[ pos ] * e ) + bias[ pos ] * e;
         double T_smear = e_smear - m;
 
+        delete _rand;
     
         if(T_smear<0) {
             T_smear = 0;
         }
     
         return T_smear;
-
-        delete _rand;
-    }
+    } // Range
 
     double Particle::McsSmear(){
 
-        ROOT::Math::GSLRngMT *_rand = new ROOT::Math::GSLRngMT;
-        _rand->Initialize();
-        _rand->SetSeed( time( NULL ) );
-    
         //For exiting muons use multiple coulomb scattering bias and resolution
         //Values from Fig 5 of https://arxiv.org.png/1703.06187.png
         double bias[]       = {0.0273,0.0409,0.0352,0.0250,0.0227,0.0068,0.0364,0.0273,0.0227};//0.0409
@@ -273,18 +275,23 @@ namespace xsec{
             }
     
         }
+   
+        // Initialise random number generator
+        ROOT::Math::GSLRngMT *_rand = new ROOT::Math::GSLRngMT;
+        _rand->Initialize();
+        _rand->SetSeed( time( NULL ) );
     
         double var = _rand->Gaussian( resolution [ pos ] * m_T );
         double T_smear = m_T + var + bias[ pos ] * m_T;
+
+        delete _rand;
     
         if( T_smear < 0 ){
             T_smear = 0; 
         }
             
         return T_smear;
-
-        delete _rand;
-    }
+    } // MCS
 
     void Particle::Smear(){
        
