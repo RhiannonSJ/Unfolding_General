@@ -35,6 +35,7 @@
 #include "TCanvas.h"
 #include "TLegend.h"
 #include <Math/GSLRndmEngines.h>
+#include <Math/Random.h>
 #include "TLatex.h"
 #include "TStyle.h"
 #include "TColor.h"

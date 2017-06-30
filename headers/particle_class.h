@@ -55,6 +55,15 @@ namespace xsec{
             //  True cos_theta
             double GetCos() const;
 
+            //  Smeared KE
+            double GetTSmeared() const;
+
+            //  Smeared cos_theta
+            double GetCosSmeared() const;
+            
+            //  Reconstructed?
+            bool GetIfReconstructed() const;
+        
         private:
 
             // Member variables
@@ -66,15 +75,18 @@ namespace xsec{
             bool   m_is_reconstructed;
 
             // Functions
-            //  Smearing
-            void Smear();
-
             //  Check if the particle is reconstructed based on cuts and efficiency
-            void CheckReco();
+            bool CheckIfReconstructed();
 
             // Check if the particle is contained within the TPC
-            bool isContained(){
-    
+            bool IsContained();
+            
+            //  Smearing
+            double RangeSmear();
+            double McsSmear();
+            void Smear();
+
+
     }; // class: Particle
 
 } // namespace : xsec
