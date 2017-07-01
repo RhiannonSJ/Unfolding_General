@@ -12,6 +12,7 @@
  */
 
 #include "/hepstore/rjones/Exercises/Unfolding_General/headers/all_headers.h"
+#include "/hepstore/rjones/Exercises/Unfolding_General/headers/unfolding_functions.h"
 
 using namespace xsec;
 

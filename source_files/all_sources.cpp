@@ -344,13 +344,17 @@ namespace xsec{
     // ====================================================================================
 
     // Constructor
-    Event::Event( std::vector< Particle > parts, bool is_cc ){
+    Event::Event( std::vector< Particle > parts, bool is_cc, int nu_flav, int physical_proc ){
         m_particle_vect = parts;
         m_is_cc         = is_cc;
+        m_neutrino_flav = nu_flav;
+        m_physical_proc = physical_proc;
     }
 
-    Event::Event( bool is_cc ){ 
-        m_is_cc = is_cc;
+    Event::Event( bool is_cc, int nu_flav, int physical_proc ){ 
+        m_is_cc         = is_cc;
+        m_neutrino_flav = nu_flav;
+        m_physical_proc = physical_proc;
     }
 
     // ====================================================================================
@@ -368,9 +372,34 @@ namespace xsec{
         return m_particle_vect.size();
     }
 
+    // CC or NC
     bool Event::GetIsCC() const{
         return m_is_cc;
     }
+    
+    // Incoming neutrino flavour 
+    int Event::GetNeutrinoFlavour() const{
+     
+        // Possible flavours:
+        //  nu_mu: 14
+        //  nu_e : 12
+        return m_neutrino_flav;
+    }
+
+    // Physical process 
+    int Event::GetPhysicalProcess() const{
+
+        // Possible processes:
+        //  QE         : 0
+        //  MEC        : 1
+        //  RES        : 2
+        //  DIS        : 3
+        //  COH        : 4
+        //  No RES, 1pi: 5
+        //  Other      : 6
+        return m_physical_proc;
+    }
+
 
     // ====================================================================================
     //                                    Operators

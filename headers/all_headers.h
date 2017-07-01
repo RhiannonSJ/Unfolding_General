@@ -73,10 +73,12 @@ namespace xsec{
         public: 
 
             // Constructor
-            //      vector< Particle > 
-            Event( std::vector< Particle > parts, bool is_cc );
-            
-            Event( bool is_cc = true );
+            Event( std::vector< Particle > parts, bool is_cc, int nu_flav, int physical_proc );
+           
+            // Default constructor
+            //  nu_flav:       muon
+            //  physical_proc: QE
+            Event( bool is_cc = true, int nu_flav = 14, int physical_proc = 0 );
 
             // Destructor
             ~Event(){}
@@ -90,6 +92,12 @@ namespace xsec{
             
             // Get Is CC
             bool GetIsCC() const;
+            
+            // Get physical process
+            int GetPhysicalProcess() const;
+            
+            // Get physical process
+            int GetNeutrinoFlavour() const;
             
             // Functions
             //  Add particle
@@ -114,7 +122,9 @@ namespace xsec{
 
             // Member variables
             std::vector< Particle > m_particle_vect;
-            bool m_is_cc;
+            bool                    m_is_cc;
+            int                     m_physical_proc;
+            int                     m_neutrino_flav;
             
     }; // class: Event
 
