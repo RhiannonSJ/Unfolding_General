@@ -74,9 +74,9 @@ namespace xsec{
 
             // Constructor
             //      vector< Particle > 
-            Event( std::vector< Particle > parts );
+            Event( std::vector< Particle > parts, bool is_cc );
             
-            Event();
+            Event( bool is_cc = true );
 
             // Destructor
             ~Event(){}
@@ -88,9 +88,21 @@ namespace xsec{
             //  Length of list
             int GetLength() const;
             
+            // Get Is CC
+            bool GetIsCC() const;
+            
             // Functions
             //  Add particle
             void Add( Particle P );
+
+            // Checking functions
+            // Does the chosen signal topology match the true
+            // topology of the event
+            bool CheckIfTrue( bool is_cc, std::map< std::vector< int >, int > topology );
+            
+            // Does the chosen signal or background topology match
+            // the reconstructed topology of the event
+            bool CheckIfReconstructed( std::map< std::vector< int >, int > topology );
 
             // Overload []
             Particle operator[]( int i ) const; 
@@ -102,6 +114,7 @@ namespace xsec{
 
             // Member variables
             std::vector< Particle > m_particle_vect;
+            bool m_is_cc;
             
     }; // class: Event
 

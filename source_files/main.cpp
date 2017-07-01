@@ -16,25 +16,11 @@
 using namespace xsec;
 
 int main_func(){
-
-    // Make a new particle object
-    // Set the values
-    int pdg1    = 13;   // Muon
-    double t1   = 0.03; // GeV 
-    double cos1 = 0.9;  // Very forward-going
-
-    Particle mu1(pdg1, t1, cos1);
-
-    int pdg2    = 211;  // Pion
-    double t2   = 0.08; // GeV 
-    double cos2 = 0.6;  // Very forward-going
     
-    Particle pi1(pdg2, t2, cos2);
-
     Event ev; 
 
-    ev.Add( mu1 );
-    ev.Add( pi1 );
+    ev.Add( Particle( 2212, 0.4, 0.8 ) );
+    ev.Add( Particle( 13,   0.12, 0.8 ) );
 
     std::cout << "----- Testing event class -----" << std::endl;
     std::cout << ev << std::endl;

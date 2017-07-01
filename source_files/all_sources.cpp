@@ -344,11 +344,14 @@ namespace xsec{
     // ====================================================================================
 
     // Constructor
-    Event::Event( std::vector< Particle > parts ){
+    Event::Event( std::vector< Particle > parts, bool is_cc ){
         m_particle_vect = parts;
+        m_is_cc         = is_cc;
     }
 
-    Event::Event(){}
+    Event::Event( bool is_cc ){ 
+        m_is_cc = is_cc;
+    }
 
     // ====================================================================================
     //                                     Getters
@@ -363,6 +366,10 @@ namespace xsec{
     // Size of vector
     int Event::GetLength() const{
         return m_particle_vect.size();
+    }
+
+    bool Event::GetIsCC() const{
+        return m_is_cc;
     }
 
     // ====================================================================================
@@ -384,9 +391,13 @@ namespace xsec{
       
     std::ostream& operator<<( std::ostream& os, const Event& ev ){
      
+        os << "--------------------------------" << std::endl
+           << ( ev.GetIsCC() ? " CC " : " NC " ) << std::endl;
+
         for( int i = 0; i < ev.GetLength(); ++i ){
-            os << ev[i] << std::endl; 
+            os << ev[i];
         }
+     
         return os;
     }
 
@@ -398,8 +409,68 @@ namespace xsec{
     void Event::Add( Particle P ){
         m_particle_vect.push_back( P );
     }
+    // Checking functions
+    // Does the chosen signal topology match the true
+    // topology of the event
+    bool Event::CheckIfTrue( bool is_cc, std::map< std::vector< int >, int > topology ){ 
+    
+        // If at the truth level the topology should be cc/nc and isn't, return false
+        if( is_cc != m_is_cc ) return false; 
 
+        // Loop over the map
+        for( std::map< std::vector< int >, int >::iterator it = topology.begin(); it != topology.end(); ++it ){
 
+            // Define temporary variables for the current map element
+            std::vector< int > PDG_codes = it->first; 
+            int n_total                  = it->second;
+
+            // Count the number of particles in the current event with the same PDG codes 
+            // as given by the chosen topology
+            int counter = 0;
+            
+            // Loop over particles in current event
+            for( Particle P: m_particle_vect ){
+
+                // Count the number of particles in event which match the topology
+                if( std::find( PDG_codes.begin(), PDG_codes.end(), P.GetPDG() ) != PDG_codes.end() ) ++counter;
+            }
+            if( counter != n_total ) return false;
+        } 
+        
+        return true; 
+    
+    }
+            
+    // Does the chosen signal or background topology match
+    // the reconstructed topology of the event
+    bool Event::CheckIfReconstructed( std::map< std::vector< int >, int > topology ){
+
+        // Loop over the map
+        for( std::map< std::vector< int >, int >::iterator it = topology.begin(); it != topology.end(); ++it ){
+
+            // Define temporary variables for the current map element
+            std::vector< int > PDG_codes = it->first; 
+            int n_total                  = it->second;
+
+            // Count the number of particles in the current event with the same PDG codes 
+            // as given by the chosen topology
+            int counter = 0;
+            
+            // Loop over particles in current event
+            for( Particle P: m_particle_vect ){
+
+                // Check if the particle is visible in the detector before adding to the counter
+                if( P.GetIfReconstructed() ){
+                 
+                    // Count the number of particles in event which match the topology
+                    if( std::find( PDG_codes.begin(), PDG_codes.end(), P.GetPDG() ) != PDG_codes.end() ) ++counter;
+                }
+            }
+            if( counter != n_total ) return false;
+        } 
+        
+        return true; 
+    }
     
 } // namespace : xsec
     
