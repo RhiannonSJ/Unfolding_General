@@ -11,8 +11,7 @@
  * =============================================
  */
 
-#include "headers/particle_class.h"
-#include "headers/event_class.h"
+#include "/hepstore/rjones/Exercises/Unfolding_General/headers/all_headers.h"
 
 using namespace xsec;
 
@@ -30,22 +29,15 @@ int main_func(){
     double t2   = 0.08; // GeV 
     double cos2 = 0.6;  // Very forward-going
     
-    Particle mu2(pdg2, t2, cos2);
+    Particle pi1(pdg2, t2, cos2);
 
-    vector< Particle > part;
-    part.push_back( mu1 );
+    Event ev; 
 
-    Event ev( part ); 
-
-    std::cout << std::endl;
-    std::cout << "----- Testing event class -----" << std::endl;
-    std::cout << ev << std::endl;
-
-    ev.Add( mu2 );
+    ev.Add( mu1 );
+    ev.Add( pi1 );
 
     std::cout << "----- Testing event class -----" << std::endl;
     std::cout << ev << std::endl;
-
 
     return 0;
 

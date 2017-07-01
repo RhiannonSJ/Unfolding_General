@@ -1,7 +1,8 @@
 
 # DO NOT DELETE
 
-./source_files/main_cpp.so: headers/particle_class.h headers/roo_unfold.h
+./source_files/main_cpp.so: /hepstore/rjones/Exercises/Unfolding_General/headers/all_headers.h
+./source_files/main_cpp.so: headers/roo_unfold.h
 ./source_files/main_cpp.so: /hepstore/rjones/Software/ROOT/Install/include/root/TNtuple.h
 ./source_files/main_cpp.so: /hepstore/rjones/Software/ROOT/Install/include/root/TTree.h
 ./source_files/main_cpp.so: /hepstore/rjones/Software/ROOT/Install/include/root/TBranch.h

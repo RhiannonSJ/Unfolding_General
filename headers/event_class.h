@@ -15,12 +15,12 @@
 #define EVENT_CLASS_H
 
 // Header file for all std::library and ROOT headers needed
-#include "headers/roo_unfold.h"
-#include "headers/particle_class.h"
+#include "/hepstore/rjones/Exercises/Unfolding_General/headers/roo_unfold.h"
+#include "/hepstore/rjones/Exercises/Unfolding_General/headers/particle_class.h"
 
 namespace xsec{
 
-    class Event: public Particle {
+    class Event{
     
         public: 
 
@@ -43,16 +43,17 @@ namespace xsec{
 
             // Overload ostream
             friend std::ostream& operator<<( std::ostream& , const Event& );
+            
+            // Functions
+            //  Add particle
+            void Add( Particle &P );
+
 
         private:
 
             // Member variables
             std::vector< Particle > event;
             
-            // Functions
-            //  Add particle
-            void Add( Particle &P );
-
     }; // class: Event
 
 } // namespace : xsec

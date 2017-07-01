@@ -1,28 +1,5 @@
-/* Particle class
- *
- *  Hold the information for a single particle
- *      - PDG code
- *      - Kinetic energy
- *      - Opening angle
- *      - Smeared kinetic energy
- *      - Smeared opening angle
- *      - Is Visible?
- *      - Is Reconstructed?
- *
- * =============================================
- *
- *  Author: Rhiannon Jones
- *  Date  : July 2017
- *
- * =============================================
- */
 
-
-#ifndef PARTICLE_CLASS_H
-#define PARTICLE_CLASS_H
-
-// Header file for all std::library and ROOT headers needed
-#include "/hepstore/rjones/Exercises/Unfolding_General/headers/roo_unfold.h"
+#include "headers/roo_unfold.h"
 
 namespace xsec{
 
@@ -65,7 +42,7 @@ namespace xsec{
             bool GetIfReconstructed() const;
         
             friend std::ostream& operator<<( std::ostream& , const Particle& );
-
+        
         private:
 
             // Member variables
@@ -91,7 +68,41 @@ namespace xsec{
 
     }; // class: Particle
 
+    class Event{
+    
+        public: 
+
+            // Constructor
+            //      vector< Particle > 
+            Event( std::vector< Particle > parts );
+            
+            Event();
+
+            // Destructor
+            ~Event(){}
+
+            // Getters
+            //  List of particles
+            std::vector< Particle > GetListOfParticles() const;
+            
+            //  Length of list
+            int GetLength() const;
+            
+            // Functions
+            //  Add particle
+            void Add( Particle P );
+
+            // Overload []
+            Particle operator[]( int i ) const; 
+
+            // Overload ostream
+            friend std::ostream& operator<<( std::ostream& , const Event& );
+
+        private:
+
+            // Member variables
+            std::vector< Particle > m_particle_vect;
+            
+    }; // class: Event
+
 } // namespace : xsec
-
-
-#endif // PARTICLE_CLASS_H

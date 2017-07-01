@@ -1,31 +1,10 @@
-/* Particle class
- *
- *  Hold the information for a single particle
- *      - PDG code
- *      - Kinetic energy
- *      - Opening angle
- *      - Smeared kinetic energy
- *      - Smeared opening angle
- *      - Is Visible?
- *      - Is Reconstructed?
- *
- * =============================================
- *
- *  Author: Rhiannon Jones
- *  Date  : July 2017
- *
- * =============================================
- */
-
-
-#ifndef PARTICLE_CLASS_CPP
-#define PARTICLE_CLASS_CPP
-
-// Header file for all std::library and ROOT headers needed
-#include "/hepstore/rjones/Exercises/Unfolding_General/headers/particle_class.h"
+#include "headers/all_headers.h"
 
 namespace xsec{
 
+    // ====================================================================================
+    //                                 PARTICLE CLASS
+    // ====================================================================================
 
     // Constructor
     //      
@@ -225,7 +204,7 @@ namespace xsec{
         }
         
     } // Contained
-
+    
     //  Smearing        
     double Particle::RangeSmear(){
     
@@ -359,8 +338,68 @@ namespace xsec{
         delete _rand;
 
     } // Smear
+        
+    // ====================================================================================
+    //                                 EVENT CLASS
+    // ====================================================================================
+
+    // Constructor
+    Event::Event( std::vector< Particle > parts ){
+        m_particle_vect = parts;
+    }
+
+    Event::Event(){}
+
+    // ====================================================================================
+    //                                     Getters
+    // ====================================================================================
+    
+    // Getters
+    //  List of particles
+    std::vector< Particle > Event::GetListOfParticles() const{
+        return m_particle_vect;
+    }
+
+    // Size of vector
+    int Event::GetLength() const{
+        return m_particle_vect.size();
+    }
+
+    // ====================================================================================
+    //                                    Operators
+    // ====================================================================================
+    
+    // Overload []
+    Particle Event::operator[]( int i ) const{
+
+        if ( i < 0 || i >= m_particle_vect.size() ){
+            std::cout << "Error: trying to access an element which is out of bounds " << std::endl;
+            exit(1);
+        }
+
+        return m_particle_vect[i];
+
+    }
+    // Overload ostream
+      
+    std::ostream& operator<<( std::ostream& os, const Event& ev ){
+     
+        for( int i = 0; i < ev.GetLength(); ++i ){
+            os << ev[i] << std::endl; 
+        }
+        return os;
+    }
+
+    // ====================================================================================
+    //                              Function definitions
+    // ====================================================================================
+    
+    // Add particle
+    void Event::Add( Particle P ){
+        m_particle_vect.push_back( P );
+    }
+
+
     
 } // namespace : xsec
     
-    
-#endif // PARTICLE_CLASS_H

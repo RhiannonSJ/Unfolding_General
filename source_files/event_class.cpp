@@ -15,8 +15,8 @@
 #define EVENT_CLASS_CPP
 
 // Header file for all std::library and ROOT headers needed
-#include "headers/event_class.h"
-#include "headers/particle_class.h"
+#include "/hepstore/rjones/Exercises/Unfolding_General/headers/event_class.h"
+#include "/hepstore/rjones/Exercises/Unfolding_General/headers/particle_class.h"
 
 namespace xsec{
 
@@ -49,12 +49,12 @@ namespace xsec{
         }
 
         // Overload ostream
-        std::ostream& operator<<( std::ostream& os, const Event& ev ){
         
+        std::ostream& operator<<( std::ostream& os, const Event& ev ){
+     
             for( int i = 0; i < ev.GetLength(); ++i ){
                 os << ev[i] << std::endl; 
             }
-
             return os;
 
         }
