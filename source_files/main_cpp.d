@@ -106,5 +106,7 @@
 ./source_files/main_cpp.so: /hepstore/rjones/Software/ROOT/Install/include/root/TText.h
 ./source_files/main_cpp.so: /hepstore/rjones/Software/ROOT/Install/include/root/TStyle.h
 ./source_files/main_cpp.so: /hepstore/rjones/Software/ROOT/Install/include/root/TColor.h
+./source_files/main_cpp.so: /hepstore/rjones/Exercises/Unfolding_General/headers/unfolding_functions.h
+./source_files/main_cpp.so: /hepstore/rjones/Exercises/Unfolding_General/headers/roo_unfold.h
 ./source_files/main_cpp.so: /hepstore/rjones/Software/ROOT/Install/include/root/cintdictversion.h /hepstore/rjones/Software/ROOT/Install/include/root/RVersion.h
 main_cpp__ROOTBUILDVERSION= 5.34/36

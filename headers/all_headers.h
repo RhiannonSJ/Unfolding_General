@@ -1,3 +1,5 @@
+#ifndef ALL_HEADERS_H
+#define ALL_HEADERS_H
 
 #include "headers/roo_unfold.h"
 
@@ -74,7 +76,7 @@ namespace xsec{
 
             // Constructor
             Event( std::vector< Particle > parts, bool is_cc, int nu_flav, int physical_proc );
-           
+
             // Default constructor
             //  nu_flav:       muon
             //  physical_proc: QE
@@ -129,3 +131,5 @@ namespace xsec{
     }; // class: Event
 
 } // namespace : xsec
+
+#endif

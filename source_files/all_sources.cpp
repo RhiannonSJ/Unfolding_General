@@ -1,3 +1,6 @@
+#ifndef ALL_SOURCES_CPP
+#define ALL_SOURCES_CPP
+
 #include "headers/all_headers.h"
 
 namespace xsec{
@@ -216,8 +219,11 @@ namespace xsec{
         // Set the mass based on PDG code
         double m;
 
-        if ( m_PDG == 13 ){
+        if ( m_PDG == 13 || m_PDG == -13 ){
             m = 0.105658;
+        }
+        else if ( m_PDG == 11 || m_PDG == -11 ){
+            m = 0.000511;
         }
         else if( m_PDG == 2212 ){
             m = 0.938272;
@@ -231,6 +237,8 @@ namespace xsec{
         else{
             m = 1;
             std::cout << " Not defined PDG of either muon, proton or pion " << std::endl;
+            std::cout << "      PDG : " << m_PDG << std::endl;
+            std::cin.get();
         }
         
         double e = m_T + m;
@@ -381,8 +389,10 @@ namespace xsec{
     int Event::GetNeutrinoFlavour() const{
      
         // Possible flavours:
-        //  nu_mu: 14
-        //  nu_e : 12
+        //  nu_mu    :  14
+        //  nu_e     :  12
+        //  nu_mu_bar: -14
+        //  nu_e_bar : -12
         return m_neutrino_flav;
     }
 
@@ -503,3 +513,4 @@ namespace xsec{
     
 } // namespace : xsec
     
+#endif
