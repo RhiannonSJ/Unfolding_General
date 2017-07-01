@@ -429,10 +429,10 @@ namespace xsec{
             int counter = 0;
             
             // Loop over particles in current event
-            for( Particle P: m_particle_vect ){
-
+            for( int i = 0; i < m_particle_vect.size(); ++i ){
+            
                 // Count the number of particles in event which match the topology
-                if( std::find( PDG_codes.begin(), PDG_codes.end(), P.GetPDG() ) != PDG_codes.end() ) ++counter;
+                if( std::find( PDG_codes.begin(), PDG_codes.end(), m_particle_vect[i].GetPDG() ) != PDG_codes.end() ) ++counter;
             }
             if( counter != n_total ) return false;
         } 
@@ -457,13 +457,13 @@ namespace xsec{
             int counter = 0;
             
             // Loop over particles in current event
-            for( Particle P: m_particle_vect ){
+            for( int i = 0; i < m_particle_vect.size(); ++i ){
 
                 // Check if the particle is visible in the detector before adding to the counter
-                if( P.GetIfReconstructed() ){
+                if( m_particle_vect[i].GetIfReconstructed() ){
                  
                     // Count the number of particles in event which match the topology
-                    if( std::find( PDG_codes.begin(), PDG_codes.end(), P.GetPDG() ) != PDG_codes.end() ) ++counter;
+                    if( std::find( PDG_codes.begin(), PDG_codes.end(), m_particle_vect[i].GetPDG() ) != PDG_codes.end() ) ++counter;
                 }
             }
             if( counter != n_total ) return false;
