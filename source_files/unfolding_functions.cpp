@@ -143,7 +143,7 @@ void LoadEventList( TTree *gst, std::vector< Event > &event_list ){
         event_list.push_back(event);
     }
 }
-
+ /*
 void GetResponse( const std::vector< Event >       & event_list,
                   const Interaction                & interaction,
                   const std::vector< Interaction > & background,
@@ -180,5 +180,5 @@ void GetResponse( const std::vector< Event >       & event_list,
         }
     }
 } 
-
+*/
 #endif
