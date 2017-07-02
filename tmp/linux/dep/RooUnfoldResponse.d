@@ -1,6 +1,6 @@
-/hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/tmp/linux/obj/RooUnfoldResponse.o /hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/tmp/linux/dep/RooUnfoldResponse.d : \
- /hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/src/RooUnfoldResponse.cxx \
- /hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/src/RooUnfoldResponse.h \
+/hepstore/rjones/Exercises/Unfolding_General/tmp/linux/obj/RooUnfoldResponse.o /hepstore/rjones/Exercises/Unfolding_General/tmp/linux/dep/RooUnfoldResponse.d : \
+ /hepstore/rjones/Exercises/Unfolding_General/src/RooUnfoldResponse.cxx \
+ /hepstore/rjones/Exercises/Unfolding_General/src/RooUnfoldResponse.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TNamed.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TObject.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/Rtypes.h \

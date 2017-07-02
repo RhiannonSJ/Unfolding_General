@@ -1,7 +1,7 @@
-#ifndef ALL_SOURCES_CPP
-#define ALL_SOURCES_CPP
+#ifndef ALL_CLASSES_CPP
+#define ALL_CLASSES_CPP
 
-#include "headers/all_headers.h"
+#include "/hepstore/rjones/Exercises/Unfolding_General/headers/all_class_headers.h"
 
 namespace xsec{
 
@@ -374,6 +374,50 @@ namespace xsec{
     std::vector< Particle > Event::GetListOfParticles() const{
         return m_particle_vect;
     }
+    
+    // Get a particle in the list
+    Particle Event::GetParticle( int i ) const{
+        return m_particle_vect[i];
+    }
+            
+    // Get a particle in the list
+    Particle Event::GetMostEnergeticParticleByPDG( int pdg ) const{
+        
+        // Vector for particles with correct pdg
+        std::vector< Particle > correct_pdg;
+        std::vector< double > energy;
+
+        // Loop over particles in the event 
+        for( int i = 0; i < m_particle_vect.size(); ++i ){
+        
+            // Check if the particle has the correct pdg
+            if( m_particle_vect[i].GetPDG() == pdg ){
+                correct_pdg.push_back( m_particle_vect[i] );
+                energy.push_back( m_particle_vect[i].GetT() );
+            }
+        }
+
+        // Return the particle with the maximum energy
+        int position = std::distance( energy.begin(), std::max_element( energy.begin(), energy.end() ) ); 
+        return correct_pdg[ position ];
+    }
+
+    // Get particles by the pdg code
+    std::vector< Particle > Event::GetParticlesByPDG( int pdg ) const{
+            
+        std::vector< Particle > particles;
+
+        // Loop over vector of particles and push back
+        // any with the chosen pdg code
+        for( int i = 0; i < m_particle_vect.size(); ++i ){
+            
+            // Temporary particle
+            Particle p = m_particle_vect[i];
+            if( p.GetPDG() == pdg ){
+                particles.push_back( p );
+            }   
+        }
+    }
 
     // Size of vector
     int Event::GetLength() const{
@@ -451,13 +495,15 @@ namespace xsec{
     // Checking functions
     // Does the chosen signal topology match the true
     // topology of the event
-    bool Event::CheckIfTrue( bool is_cc, std::map< std::vector< int >, int > topology ){ 
+    bool Event::CheckIfTrue( Interaction interaction ){ 
     
         // If at the truth level the topology should be cc/nc and isn't, return false
-        if( is_cc != m_is_cc ) return false; 
+        if( interaction.GetIsCC() != m_is_cc ) return false; 
+
+        top_map topology = interaction.GetMap();
 
         // Loop over the map
-        for( std::map< std::vector< int >, int >::iterator it = topology.begin(); it != topology.end(); ++it ){
+        for( top_map::iterator it = topology.begin(); it != topology.end(); ++it ){
 
             // Define temporary variables for the current map element
             std::vector< int > PDG_codes = it->first; 
@@ -482,10 +528,12 @@ namespace xsec{
             
     // Does the chosen signal or background topology match
     // the reconstructed topology of the event
-    bool Event::CheckIfReconstructed( std::map< std::vector< int >, int > topology ){
+    bool Event::CheckIfReconstructed( Interaction interaction ){
+
+        top_map topology = interaction.GetMap();
 
         // Loop over the map
-        for( std::map< std::vector< int >, int >::iterator it = topology.begin(); it != topology.end(); ++it ){
+        for( top_map::iterator it = topology.begin(); it != topology.end(); ++it ){
 
             // Define temporary variables for the current map element
             std::vector< int > PDG_codes = it->first; 
@@ -511,6 +559,70 @@ namespace xsec{
         return true; 
     }
     
+    // ====================================================================================
+    //                               INTERACTION CLASS
+    // ====================================================================================
+
+    // Constructor
+    Interaction::Interaction( top_map topology, int primary_pdg, bool is_cc ){
+        m_topology    = topology;
+        m_primary_pdg = primary_pdg;
+        m_is_cc       = is_cc;
+
+        for( top_map::iterator it = topology.begin(); it != topology.end(); ++it ){
+
+            // Define temporary variables for the current map element
+            std::vector< int > PDG_codes = it->first; 
+            int n_total                  = it->second;
+
+            bool primary_found = false; 
+
+            for ( int i = 0; i < PDG_codes.size(); ++i ){
+
+                if( std::find( PDG_codes.begin(), PDG_codes.end(), primary_pdg ) != PDG_codes.end() ){
+                    
+                    primary_found = true;
+                    
+                    if( PDG_codes.size() == 1 ){
+                        if( n_total < 1 ){
+                            std::cerr << " Must have at least one of the primary particle in the chosen signal " <<  std::endl;
+                            exit(1);
+                        }   
+                    }
+                    else{
+                        std::cerr << " Must only contain 1 PDG option " << std::endl;
+                        exit(1);
+                    }
+                }
+            }
+            if( !primary_found ){
+                std::cerr << " Must at least contain one somewhere " << std::endl;
+                exit(1);
+            
+            }
+        }
+    }
+
+    // ====================================================================================
+    //                                     Getters
+    // ====================================================================================
+    
+    // Getters
+    // Get the map
+    top_map Interaction::GetMap() const{
+        return m_topology;
+    }
+
+    // Get the primary PDG code
+    int Interaction::GetPrimaryPDG() const{
+        return m_primary_pdg;
+    }
+
+    // Get CC
+    bool Interaction::GetIsCC() const{
+        return m_is_cc;
+    }
+
 } // namespace : xsec
     
 #endif

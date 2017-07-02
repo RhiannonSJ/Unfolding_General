@@ -1,9 +1,12 @@
-#ifndef ALL_HEADERS_H
-#define ALL_HEADERS_H
+#ifndef ALL_CLASS_HEADERS_H
+#define ALL_CLASS_HEADERS_H
 
-#include "headers/roo_unfold.h"
+#include "/hepstore/rjones/Exercises/Unfolding_General/headers/roo_unfold.h"
 
 namespace xsec{
+
+    // Typedef for the map
+    typedef std::map< std::vector< int >, int > top_map; 
 
     class Particle {
     
@@ -70,6 +73,32 @@ namespace xsec{
 
     }; // class: Particle
 
+    class Interaction{
+    
+        public : 
+
+            // Constructor
+            Interaction( top_map topology, int primary_pdg, bool is_cc );
+
+            // Getters
+            // Get the map
+            top_map GetMap() const;
+
+            // Get the primary PDG code
+            int GetPrimaryPDG() const;
+
+            // Get CC
+            bool GetIsCC() const;
+
+        private :
+
+            // Member variables
+            top_map m_topology;
+            int m_primary_pdg;
+            bool m_is_cc;
+
+    }; // Interaction class
+    
     class Event{
     
         public: 
@@ -88,7 +117,16 @@ namespace xsec{
             // Getters
             //  List of particles
             std::vector< Particle > GetListOfParticles() const;
+           
+            // Get a particle in the list
+            Particle GetParticle( int i ) const;
             
+            // Get a particle in the list
+            Particle GetMostEnergeticParticleByPDG( int pdg ) const;
+    
+            // Get particles by the pdg code
+            std::vector< Particle > GetParticlesByPDG( int pdg ) const;
+
             //  Length of list
             int GetLength() const;
             
@@ -108,11 +146,11 @@ namespace xsec{
             // Checking functions
             // Does the chosen signal topology match the true
             // topology of the event
-            bool CheckIfTrue( bool is_cc, std::map< std::vector< int >, int > topology );
+            bool CheckIfTrue( Interaction interaction );
             
             // Does the chosen signal or background topology match
             // the reconstructed topology of the event
-            bool CheckIfReconstructed( std::map< std::vector< int >, int > topology );
+            bool CheckIfReconstructed( Interaction interaction );
 
             // Overload []
             Particle operator[]( int i ) const; 

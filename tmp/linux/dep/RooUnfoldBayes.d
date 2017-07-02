@@ -1,7 +1,7 @@
-/hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/tmp/linux/obj/RooUnfoldBayes.o /hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/tmp/linux/dep/RooUnfoldBayes.d : \
- /hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/src/RooUnfoldBayes.cxx \
- /hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/src/RooUnfoldBayes.h \
- /hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/src/RooUnfold.h \
+/hepstore/rjones/Exercises/Unfolding_General/tmp/linux/obj/RooUnfoldBayes.o /hepstore/rjones/Exercises/Unfolding_General/tmp/linux/dep/RooUnfoldBayes.d : \
+ /hepstore/rjones/Exercises/Unfolding_General/src/RooUnfoldBayes.cxx \
+ /hepstore/rjones/Exercises/Unfolding_General/src/RooUnfoldBayes.h \
+ /hepstore/rjones/Exercises/Unfolding_General/src/RooUnfold.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TNamed.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TObject.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/Rtypes.h \
@@ -41,7 +41,7 @@
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TMatrixDSparse.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TMatrixDSparsefwd.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TMatrixD.h \
- /hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/src/RooUnfoldResponse.h \
+ /hepstore/rjones/Exercises/Unfolding_General/src/RooUnfoldResponse.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TH1.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TAxis.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TAttAxis.h \

@@ -2,7 +2,6 @@
 #define UNFOLDING_FUNCTIONS_CPP
 
 #include "/hepstore/rjones/Exercises/Unfolding_General/headers/unfolding_functions.h"
-
 using namespace xsec;
 
 // Load the list of events from the gst tree and push onto a vector of events
@@ -144,5 +143,42 @@ void LoadEventList( TTree *gst, std::vector< Event > &event_list ){
         event_list.push_back(event);
     }
 }
+
+void GetResponse( const std::vector< Event >       & event_list,
+                  const Interaction                & interaction,
+                  const std::vector< Interaction > & background,
+                  RooUnfoldResponse                & response ) {
+    
+    for( unsigned int i = 0; i < event_list.size(); ++i ) {
+        
+        // Temporary event for ease
+        Event ev = event_list[i];
+
+        if( ev.CheckIfTrue( interaction ) ) {
+       
+            // Get the primary PDG code
+            Particle primary = ev.GetMostEnergeticParticleByPDG( interaction.GetPrimaryPDG() );
+                    
+            if( ev.CheckIfReconstructed( interaction ) ){
+                response.Fill( primary.GetCosSmeared(), primary.GetTSmeared(), primary.GetCos(), primary.GetT() );
+            }
+            else{
+                response.Miss( primary.GetCos(), primary.GetT() ); 
+            }
+        }
+        else{
+            if( ev.CheckIfReconstructed( interaction ) ){
+                Particle reco_primary = ev.GetMostEnergeticParticleByPDG( interaction.GetPrimaryPDG() );
+                response.Fake( reco_primary.GetCosSmeared(), reco_primary.GetTSmeared() );
+            }
+            for( int j = 0; j < background.size(); ++j ){
+                if( ev.CheckIfReconstructed( background[j] ) ){ 
+                    Particle bg_primary = ev.GetMostEnergeticParticleByPDG( background[j].GetPrimaryPDG() );
+                    response.Fake( bg_primary.GetCosSmeared(), bg_primary.GetTSmeared() );
+                }
+            }
+        }
+    }
+} 
 
 #endif

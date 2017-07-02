@@ -1,6 +1,6 @@
-/hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/tmp/linux/obj/RooUnfoldErrors.o /hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/tmp/linux/dep/RooUnfoldErrors.d : \
- /hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/src/RooUnfoldErrors.cxx \
- /hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/src/RooUnfoldErrors.h \
+/hepstore/rjones/Exercises/Unfolding_General/tmp/linux/obj/RooUnfoldErrors.o /hepstore/rjones/Exercises/Unfolding_General/tmp/linux/dep/RooUnfoldErrors.d : \
+ /hepstore/rjones/Exercises/Unfolding_General/src/RooUnfoldErrors.cxx \
+ /hepstore/rjones/Exercises/Unfolding_General/src/RooUnfoldErrors.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TNamed.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TObject.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/Rtypes.h \
@@ -54,7 +54,7 @@
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TObjString.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TVirtualTreePlayer.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TAxis.h \
- /hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/src/RooUnfoldResponse.h \
+ /hepstore/rjones/Exercises/Unfolding_General/src/RooUnfoldResponse.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TMatrixD.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TMatrixT.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TMatrixTBase.h \
@@ -67,7 +67,7 @@
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TMatrixDUtilsfwd.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TH1.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TVectorDfwd.h \
- /hepstore/rjones/Exercises/Unfolding_General/RooUnfold-1.1.1/src/RooUnfold.h \
+ /hepstore/rjones/Exercises/Unfolding_General/src/RooUnfold.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TVectorD.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TVectorT.h \
  /afs/cern.ch/sw/lcg/app/releases/ROOT/5.28.00a/slc4_ia32_gcc34/root/include/TMatrixTSym.h \
